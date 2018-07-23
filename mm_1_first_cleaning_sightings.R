@@ -117,18 +117,18 @@ rowids_need_new_UIDs <- mm_mm %>% filter(old_UID2 %in% st_multiple_sp$old_UID2)
 #need to give the 2-species sightings different UID2s so they don't get deleted
 table(rowids_need_new_UIDs$rowid, rowids_need_new_UIDs$UID2) 
 
-mm_mm2 <- mm_mm %>%
-  select(old_UID2, UID2, rowid, team, sighttype) %>%
-  mutate(UID2 = case_when(
-    rowid == 513 ~ 287.5,
-    rowid == 1680 ~ 870.5,
-    rowid == 1854 ~ 1009.5, 
-    rowid == 1149 ~ 2314.5,
-    TRUE ~ as.numeric(UID2)))
+#mm_mm2 <- mm_mm %>%
+#  select(old_UID2, UID2, rowid, team, sighttype) %>%
+#  mutate(UID2 = case_when(
+#    rowid == 513 ~ 287.5,
+#    rowid == 1680 ~ 870.5,
+#    rowid == 1854 ~ 1009.5, 
+#    rowid == 1149 ~ 2314.5,
+#    TRUE ~ as.numeric(UID2)))
 
 #check that UID2 values are unique
-filter(mm_mm2, old_UID2 %in% st_multiple_sp$old_UID2)
-#good - no overlaps with teams and all multispecies sightings are initial sightings.
+#filter(mm_mm2, old_UID2 %in% st_multiple_sp$old_UID2)
+#muy bein - no overlaps with teams and all multispecies sightings are initial sightings.
 
 #for realz now
 mm_mm <- mm_mm %>%
@@ -149,6 +149,6 @@ survey_days_stng <- mm_mm %>%
 write_rds(mm_mm, "mm_mm.rds")
 
 
-# NEXT: Go to makeing_mm_shapefile_2.R
+# NEXT: Go to mm_2_making_ALL_shapefile_2.R
 
 
